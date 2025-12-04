@@ -1,6 +1,6 @@
-<h1 align="center">
- <img src="docs/img/codon-banner.svg" alt="Codon banner"/>
-</h1>
+# megalodon
+
+
 
 <h3 align="center">
   <a href="https://docs.exaloop.io/codon" target="_blank"><b>Docs</b></a>
