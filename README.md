@@ -3,33 +3,33 @@
 
 
 <h3 align="center">
-  <a href="https://docs.exaloop.io/codon" target="_blank"><b>Docs</b></a>
+  <a href="https://docs.exaloop.io/megalodon" target="_blank"><b>Docs</b></a>
   &nbsp;&#183;&nbsp;
-  <a href="https://docs.exaloop.io/codon/general/faq" target="_blank"><b>FAQ</b></a>
+  <a href="https://docs.exaloop.io/megalodon/general/faq" target="_blank"><b>FAQ</b></a>
   &nbsp;&#183;&nbsp;
   <a href="https://exaloop.io/blog" target="_blank"><b>Blog</b></a>
   &nbsp;&#183;&nbsp;
   <a href="https://discord.gg/HeWRhagCmP" target="_blank">Discord</a>
   &nbsp;&#183;&nbsp;
-  <a href="https://docs.exaloop.io/codon/general/roadmap" target="_blank">Roadmap</a>
+  <a href="https://docs.exaloop.io/megalodon/general/roadmap" target="_blank">Roadmap</a>
   &nbsp;&#183;&nbsp;
   <a href="https://exaloop.io/#benchmarks" target="_blank">Benchmarks</a>
 </h3>
 
-<a href="https://github.com/exaloop/codon/actions/workflows/ci.yml">
-  <img src="https://github.com/exaloop/codon/actions/workflows/ci.yml/badge.svg"
+<a href="https://github.com/exaloop/megalodon/actions/workflows/ci.yml">
+  <img src="https://github.com/exaloop/megalodon/actions/workflows/ci.yml/badge.svg"
        alt="Build Status">
 </a>
 
-# What is Codon?
+# What is megalodon?
 
-Codon is a high-performance Python implementation that compiles to native machine code without
+megalodon is a high-performance Python implementation that compiles to native machine code without
 any runtime overhead. Typical speedups over vanilla Python are on the order of 10-100x or more, on
-a single thread. Codon's performance is typically on par with (and sometimes better than) that of
-C/C++. Unlike Python, Codon supports native multithreading, which can lead to speedups many times
+a single thread. megalodon's performance is typically on par with (and sometimes better than) that of
+C/C++. Unlike Python, megalodon supports native multithreading, which can lead to speedups many times
 higher still.
 
-*Think of Codon as Python reimagined for static, ahead-of-time compilation, built from the ground
+*Think of megalodon as Python reimagined for static, ahead-of-time compilation, built from the ground
 up with best possible performance in mind.*
 
 ## Goals
@@ -43,47 +43,47 @@ up with best possible performance in mind.*
 
 ## Non-goals
 
-- :x: *Drop-in replacement for CPython:* Codon is not a drop-in replacement for CPython. There are some
-  aspects of Python that are not suitable for static compilation — we don't support these in Codon.
-  There are ways to use Codon in larger Python codebases via its [JIT decorator](https://docs.exaloop.io/codon/interoperability/decorator)
-  or [Python extension backend](https://docs.exaloop.io/codon/interoperability/pyext). Codon also supports
-  calling any Python module via its [Python interoperability](https://docs.exaloop.io/codon/interoperability/python).
-  See also [*"Differences with Python"*](https://docs.exaloop.io/codon/general/differences) in the docs.
+- :x: *Drop-in replacement for CPython:* megalodon is not a drop-in replacement for CPython. There are some
+  aspects of Python that are not suitable for static compilation — we don't support these in megalodon.
+  There are ways to use megalodon in larger Python codebases via its [JIT decorator](https://docs.exaloop.io/megalodon/interoperability/decorator)
+  or [Python extension backend](https://docs.exaloop.io/megalodon/interoperability/pyext). megalodon also supports
+  calling any Python module via its [Python interoperability](https://docs.exaloop.io/megalodon/interoperability/python).
+  See also [*"Differences with Python"*](https://docs.exaloop.io/megalodon/general/differences) in the docs.
 
 - :x: *New syntax and language constructs:* We try to avoid adding new syntax, keywords or other language
-  features as much as possible. While Codon does add some new syntax in a couple places (e.g. to express
+  features as much as possible. While megalodon does add some new syntax in a couple places (e.g. to express
   parallelism), we try to make it as familiar and intuitive as possible.
 
 ## How it works
 
 <p align="center">
- <img src="docs/img/codon-pipeline.svg" width="90%" alt="Codon figure"/>
+ <img src="docs/img/megalodon-pipeline.svg" width="90%" alt="megalodon figure"/>
 </p>
 
 # Quick start
 
-Download and install Codon with this command:
+Download and install megalodon with this command:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://exaloop.io/install.sh)"
 ```
 
-After following the prompts, the `codon` command will be available to use. For example:
+After following the prompts, the `megalodon` command will be available to use. For example:
 
-- To run a program: `codon run file.py`
-- To run a program with optimizations enabled: `codon run -release file.py`
-- To compile to an executable: `codon build -release file.py`
-- To generate LLVM IR: `codon build -release -llvm file.py`
+- To run a program: `megalodon run file.py`
+- To run a program with optimizations enabled: `megalodon run -release file.py`
+- To compile to an executable: `megalodon build -release file.py`
+- To generate LLVM IR: `megalodon build -release -llvm file.py`
 
-Many more options are available and described in [the docs](https://docs.exaloop.io/codon/general/intro).
+Many more options are available and described in [the docs](https://docs.exaloop.io/megalodon/general/intro).
 
-Alternatively, you can [build from source](https://docs.exaloop.io/codon/advanced/build).
+Alternatively, you can [build from source](https://docs.exaloop.io/megalodon/advanced/build).
 
 # Examples
 
 ## Basics
 
-Codon supports much of Python, and many Python programs will work with few if any modifications.
+megalodon supports much of Python, and many Python programs will work with few if any modifications.
 Here's a simple script `fib.py` that computes the 40th Fibonacci number...
 
 ``` python
@@ -98,18 +98,18 @@ t1 = time()
 print(f'Computed fib(40) = {ans} in {t1 - t0} seconds.')
 ```
 
-... run through Python and Codon:
+... run through Python and megalodon:
 
 ```
 $ python3 fib.py
 Computed fib(40) = 102334155 in 17.979357957839966 seconds.
-$ codon run -release fib.py
+$ megalodon run -release fib.py
 Computed fib(40) = 102334155 in 0.275645 seconds.
 ```
 
 ## Using Python libraries
 
-You can import and use any Python package from Codon via `from python import`. For example:
+You can import and use any Python package from megalodon via `from python import`. For example:
 
 ```python
 from python import matplotlib.pyplot as plt
@@ -118,12 +118,12 @@ plt.plot(data)
 plt.show()
 ```
 
-(Just remember to set the `CODON_PYTHON` environment variable to the CPython shared library,
-as explained in the [the Python interoperability docs](https://docs.exaloop.io/codon/interoperability/python).)
+(Just remember to set the `megalodon_PYTHON` environment variable to the CPython shared library,
+as explained in the [the Python interoperability docs](https://docs.exaloop.io/megalodon/interoperability/python).)
 
 ## Parallelism
 
-Codon supports native multithreading via [OpenMP](https://www.openmp.org/). The `@par` annotation
+megalodon supports native multithreading via [OpenMP](https://www.openmp.org/). The `@par` annotation
 in the code below tells the compiler to parallelize the following `for`-loop, in this case using
 a dynamic schedule, chunk size of 100, and 16 threads.
 
@@ -148,10 +148,10 @@ for i in range(2, limit):
 print(total)
 ```
 
-Note that Codon automatically turns the `total += 1` statement in the loop body into an atomic
-reduction to avoid race conditions. Learn more in the [multithreading docs](https://docs.exaloop.io/codon/advanced/parallel).
+Note that megalodon automatically turns the `total += 1` statement in the loop body into an atomic
+reduction to avoid race conditions. Learn more in the [multithreading docs](https://docs.exaloop.io/megalodon/advanced/parallel).
 
-Codon also supports writing and executing GPU kernels. Here's an example that computes the
+megalodon also supports writing and executing GPU kernels. Here's an example that computes the
 [Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set):
 
 ```python
@@ -182,12 +182,12 @@ mandelbrot(pixels, grid=(N*N)//1024, block=1024)
 ```
 
 GPU programming can also be done using the `@par` syntax with `@par(gpu=True)`. See the
-[GPU programming docs](https://docs.exaloop.io/codon/advanced/gpu) for more details.
+[GPU programming docs](https://docs.exaloop.io/megalodon/advanced/gpu) for more details.
 
 ## NumPy support
 
-Codon includes a feature-complete, fully-compiled native NumPy implementation. It uses the same
-API as NumPy, but re-implements everything in Codon itself, allowing for a range of optimizations
+megalodon includes a feature-complete, fully-compiled native NumPy implementation. It uses the same
+API as NumPy, but re-implements everything in megalodon itself, allowing for a range of optimizations
 and performance improvements.
 
 Here's an example NumPy program that approximates $\pi$ using random numbers...
@@ -208,19 +208,19 @@ t1 = time.time()
 print(f'Computed pi~={pi:.4f} in {t1 - t0:.2f} sec')
 ```
 
-... run through Python and Codon:
+... run through Python and megalodon:
 
 ```
 $ python3 pi.py
 Computed pi~=3.1417 in 2.25 sec
-$ codon run -release pi.py
+$ megalodon run -release pi.py
 Computed pi~=3.1417 in 0.43 sec
 ```
 
-Codon can speed up NumPy code through general-purpose and NumPy-specific compiler optimizations,
-including inlining, fusion, memory allocation elision and more. Furthermore, Codon's NumPy
+megalodon can speed up NumPy code through general-purpose and NumPy-specific compiler optimizations,
+including inlining, fusion, memory allocation elision and more. Furthermore, megalodon's NumPy
 implementation works with its multithreading and GPU capabilities, and can even integrate with
-[PyTorch](https://pytorch.org). Learn more in the [Codon-NumPy docs](https://docs.exaloop.io/codon/interoperability/numpy).
+[PyTorch](https://pytorch.org). Learn more in the [megalodon-NumPy docs](https://docs.exaloop.io/megalodon/interoperability/numpy).
 
 # Documentation
 
